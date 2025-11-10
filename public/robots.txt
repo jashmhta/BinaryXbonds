@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://binarybonds.com
+
+# Sitemaps
+Sitemap: https://binarybonds.com/sitemap.xml

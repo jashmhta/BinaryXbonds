@@ -1,13 +1,23 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Shield, Users, Download } from "lucide-react";
+import { TrendingUp, Shield, Users, Download, FileText } from "lucide-react";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleDownloadBrochure = () => {
+    // Track download analytics if needed
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'download', {
+        event_category: 'engagement',
+        event_label: 'Binary Bonds Brochure'
+      });
     }
   };
 
@@ -35,39 +45,38 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl md:text-3xl text-white/95 mb-6 font-bold drop-shadow-lg">
-            Primary Market Bonds • Secondary Market Trading • Bond Underwriting
+            Primary Market Expertise | Credit Rating Advisory | Portfolio Management
           </p>
 
-          {/* Description */}
-          <p className="text-base sm:text-lg md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-semibold">
-            Comprehensive bond market solutions for institutional investors,
-            banks, HNIs, mutual funds, and insurance companies, with a focus on
-            risk assessment and regulatory compliance.
+          {/* Enhanced Description */}
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
+            Navigate the bond market with confidence. From corporate underwriting to government securities, 
+            we deliver comprehensive solutions tailored to your investment goals.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button
               size="lg"
-              className="bg-[hsl(var(--golden))] hover:bg-[hsl(var(--golden-dark))] text-[hsl(var(--navy))] font-semibold text-lg px-10 py-7 shadow-2xl"
-              onClick={() => scrollToSection("services")}
+              onClick={() => scrollToSection("contact")}
+              className="bg-[hsl(var(--golden))] hover:bg-[hsl(var(--golden))]/90 text-black font-bold text-base sm:text-lg px-8 py-6 rounded-full shadow-2xl hover:shadow-[hsl(var(--golden))]/50 transition-all duration-300 hover:scale-105 w-full sm:w-auto"
             >
-              Discover Our Solutions
+              <Users className="mr-2 h-5 w-5" />
+              Get Started Today
             </Button>
+
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-[hsl(var(--navy))] text-lg px-10 py-7 bg-transparent shadow-2xl font-semibold"
-              onClick={() => scrollToSection("contact")}
-            >
-              Contact Us Today
-            </Button>
-            <Button
-              size="lg"
-              className="bg-white/10 backdrop-blur-sm border-2 border-[hsl(var(--golden))] text-white hover:bg-[hsl(var(--golden))] hover:text-[hsl(var(--navy))] text-lg px-10 py-7 shadow-2xl font-semibold"
               asChild
+              className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold text-base sm:text-lg px-8 py-6 rounded-full backdrop-blur-sm shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
             >
-              <a href="/binary-bonds-brochure.pdf" download="Binary-Bonds-Brochure.pdf" className="flex items-center gap-2">
+              <a 
+                href="/binary-bonds-brochure.pdf" 
+                download="Binary-Bonds-Brochure.pdf"
+                onClick={handleDownloadBrochure}
+                className="flex items-center gap-2"
+              >
                 <Download className="w-5 h-5" />
                 Download Brochure
               </a>
@@ -75,35 +84,38 @@ export default function Hero() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[hsl(var(--golden))]/20 flex items-center justify-center backdrop-blur-sm">
-                <TrendingUp className="w-8 h-8 text-[hsl(var(--golden))]" />
-              </div>
-              <h3 className="text-xl font-bold text-white">Expert Advisory</h3>
-              <p className="text-white/80 text-sm">
-                Professional bond market expertise and strategic guidance
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 shadow-xl">
+              <TrendingUp className="w-10 h-10 sm:w-12 sm:h-12 text-[hsl(var(--golden))] mx-auto mb-3" />
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">Market Leadership</h3>
+              <p className="text-sm sm:text-base text-white/80">
+                Trusted partner in bond market solutions
               </p>
             </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[hsl(var(--golden))]/20 flex items-center justify-center backdrop-blur-sm">
-                <Shield className="w-8 h-8 text-[hsl(var(--golden))]" />
-              </div>
-              <h3 className="text-xl font-bold text-white">Risk Management</h3>
-              <p className="text-white/80 text-sm">
-                Comprehensive risk assessment and mitigation strategies
+
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 shadow-xl">
+              <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-[hsl(var(--golden))] mx-auto mb-3" />
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">Regulatory Excellence</h3>
+              <p className="text-sm sm:text-base text-white/80">
+                Fully compliant with SEBI guidelines
               </p>
             </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[hsl(var(--golden))]/20 flex items-center justify-center backdrop-blur-sm">
-                <Users className="w-8 h-8 text-[hsl(var(--golden))]" />
-              </div>
-              <h3 className="text-xl font-bold text-white">Trusted Partner</h3>
-              <p className="text-white/80 text-sm">
-                Serving institutional investors and corporate treasuries
+
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 shadow-xl">
+              <Users className="w-10 h-10 sm:w-12 sm:h-12 text-[hsl(var(--golden))] mx-auto mb-3" />
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">Expert Team</h3>
+              <p className="text-sm sm:text-base text-white/80">
+                Decades of combined market experience
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 bg-white/70 rounded-full"></div>
         </div>
       </div>
     </section>
